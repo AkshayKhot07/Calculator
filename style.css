@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 5em;
+}
+
+.main-container {
+  /* width: 330px; */
+  background-color: #585858;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.display-values {
+  height: 100px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+
+#number0 {
+  grid-column: 1/3;
+  border-radius: 12px;
+  width: 150px;
+  margin-left: 5px;
+}
+
+/* All Buttons */
+
+.btn {
+  border: none;
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin: 10px 0;
+  font-size: large;
+  font-weight: bold;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+/* Orange and Blue */
+.orange-white {
+  background-color: #ffa500;
+  color: white;
+  font-size: 20px;
+}
+
+.orange-white:hover {
+  background-color: white;
+  color: #ffa500;
+  font-size: 20px;
+}
+
+/* Blue and White */
+
+.blue-white {
+  background-color: #0047ab;
+  color: white;
+  font-size: 20px;
+}
+
+.blue-white:hover {
+  background-color: white;
+  color: #0047ab;
+  font-size: 20px;
+}
+
+/* Numbers */
+
+.number {
+  background-color: white;
+  color: black;
+}
+
+.number:hover {
+  background-color: #d3d3d3;
+  color: black;
+}
+
+/* Display Screen */
+.display-values {
+  position: relative;
+}
+
+.display-values > span {
+  color: white;
+  margin-right: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 40px;
+}
