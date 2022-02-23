@@ -31,8 +31,12 @@
 }
 
 /* All Buttons */
+.buttons {
+  font-size: 0;
+}
 
-.btn {
+.buttons .btn {
+  display: inline-block;
   border: none;
   border-radius: 50%;
   height: 60px;
@@ -85,16 +89,38 @@
   color: black;
 }
 
+/* Dot operator */
+
+.dot-operator {
+  background-color: white;
+  color: black;
+}
+
+.dot-operator:hover {
+  background-color: #d3d3d3;
+  color: black;
+}
+
 /* Display Screen */
 .display-values {
   position: relative;
 }
 
-.display-values > span {
+.display-values .display-values-bottom {
   color: white;
   margin-right: 10px;
   position: absolute;
   right: 0;
   bottom: 0;
   font-size: 40px;
+}
+
+.display-values .display-values-top {
+  color: white;
+  margin-right: 10px;
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+  margin-top: 10px;
+  display: none;
 }

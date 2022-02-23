@@ -10,43 +10,79 @@
   <body>
     <div class="container">
       <div class="main-container">
-        <div class="display-values"><span id="display-values">0</span></div>
+        <div class="display-values">
+          <span id="display-values-top" class="display-values-top">0</span>
+          <span id="display-values-bottom" class="display-values-bottom"
+            >0</span
+          >
+        </div>
         <div class="buttons">
-          <button id="clear-all" class="btn operator firstRow blue-white">
+          <button
+            id="clear-all"
+            class="btn operator firstRow blue-white"
+            data-clear-all="AC"
+          >
             AC
           </button>
-          <button id="backspace" class="btn operator firstRow blue-white">
+          <button
+            id="backspace"
+            class="btn operator firstRow blue-white"
+            data-backspace="&#x232b;"
+          >
             &#x232b;
           </button>
-          <button id="percentage" class="btn operator firstRow blue-white">
-            &#37;
+          <button
+            id="percentage"
+            class="btn firstRow blue-white"
+            data-percentage="%"
+          >
+            %
           </button>
-          <button id="divide" class="btn operator firstRow orange-white">
-            &#247;
+          <button
+            id="divide"
+            class="btn operator firstRow orange-white"
+            data-divide="/"
+          >
+            /
           </button>
           <button id="number7" class="btn number secondRow">7</button>
           <button id="number8" class="btn number secondRow">8</button>
           <button id="number9" class="btn number secondRow">9</button>
-          <button id="multiply" class="btn operator secondRow orange-white">
-            &#215;
+          <button
+            id="multiply"
+            class="btn operator secondRow orange-white"
+            data-multiply="*"
+          >
+            *
           </button>
           <button id="number4" class="btn number thirdRow">4</button>
           <button id="number5" class="btn number thirdRow">5</button>
           <button id="number6" class="btn number thirdRow">6</button>
-          <button id="subtract" class="btn operator thirdRow orange-white">
-            &#8722;
+          <button
+            id="subtract"
+            class="btn operator thirdRow orange-white"
+            data-subtract="-"
+          >
+            -
           </button>
           <button id="number1" class="btn number fourthRow">1</button>
           <button id="number2" class="btn number fourthRow">2</button>
           <button id="number3" class="btn number fourthRow">3</button>
-          <button id="add" class="btn operator fourthRow orange-white">
-            &#x2b;
+          <button
+            id="add"
+            class="btn operator fourthRow orange-white"
+            data-add="+"
+          >
+            +
           </button>
           <button id="number0" class="btn number fifthRow">0</button>
-          <button id="dot" class="btn number fifthRow">&middot;</button>
-          <button id="equal" class="btn operator fifthRow orange-white">
-            =
-          </button>
+          <!-- prettier-ignore -->
+          <button
+            id="dot"
+            class="btn dot-operator number fifthRow"
+            data-dot="."
+          >.</button>
+          <button id="equal" class="btn fifthRow orange-white">=</button>
         </div>
       </div>
     </div>
