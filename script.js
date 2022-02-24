@@ -15,6 +15,7 @@ buttons.forEach((button) => {
 
     //Initial stage and percentage calc
     let number;
+
     if (this.classList.contains("number")) {
       number = this.textContent;
       str += number;
@@ -30,8 +31,8 @@ buttons.forEach((button) => {
       str = "";
     }
 
-    console.log(str);
-    console.log(arr);
+    // console.log(str);
+    // console.log(arr);
 
     //Calculated values using equals and operator
     if (this.id === "equal" && arr.length >= 2) {
@@ -51,12 +52,62 @@ buttons.forEach((button) => {
     if (this.classList.contains("operator")) {
       elData = this.dataset;
       calcOperator = Object.values(elData)[0];
-      console.log(calcOperator);
+      // console.log(calcOperator);
     }
+
+    //Equal Operator
+    let equalOp;
+    if (this.id === "equal") {
+      equalOp = this.textContent;
+      // console.log(equalOp);
+    }
+
+    displayScreen(number, calcOperator, equalOp, calcValue);
   });
 });
 
 /************* Function Display Screen *************/
+
+let displayValBottom = document.getElementById("display-values-bottom");
+let displayValTop = document.getElementById("display-values-top");
+let displayString = "";
+let displayArr = [];
+
+function displayScreen(number, calcOperator, equalOp, calcValue) {
+  if (number) {
+    displayString += number;
+    displayValBottom.textContent = displayString;
+  }
+
+  //equal operator
+  else if (equalOp) {
+    if (displayString !== "") {
+      displayArr.push(displayString);
+    }
+    displayString = "";
+    displayArr.push(equalOp);
+    if (displayArr.length === 4) {
+      displayValBottom.textContent = calcValue;
+      displayArr = [calcValue];
+    }
+  }
+
+  //calculation operator
+  else if (calcOperator) {
+    if (displayString !== "") {
+      displayArr.push(displayString);
+    }
+    displayString = "";
+    displayArr.push(calcOperator);
+    if (displayArr.length === 4) {
+      // console.log(displayArr);
+      displayValBottom.textContent = calcValue;
+      displayArr = [];
+      displayArr.push(calcValue);
+      displayArr.push(calcOperator);
+    }
+  }
+}
 
 /************* Functions *************/
 
@@ -129,4 +180,42 @@ buttons.addEventListener("click", function (e) {
     console.log(calculate(operator, ...number));
   }
 });
+*/
+
+/*
+function displayScreen(number, calcOperator, equalOp, calcValue) {
+  if (number) {
+    displayString += number;
+    displayValBottom.textContent = displayString;
+  } else if (equalOp) {
+    if (displayString !== "") {
+      displayArr.push(displayString);
+    }
+    // displayString += equalOp;
+    displayArr.push(equalOp);
+    // displayValTop.textContent = displayString;
+    // displayValTop.classList.add("visible");
+    // displayString = "";
+  } else if (calcOperator) {
+    if (displayString !== "") {
+      displayArr.push(displayString);
+    }
+    // displayString += calcOperator;
+    displayArr.push(calcOperator);
+    // displayValTop.textContent = displayString;
+    // displayValTop.classList.add("visible");
+    displayString = "";
+  } else if (number && displayArr.length === 4) {
+    displayValBottom.textContent = calcValue;
+  }
+
+  console.log(displayString);
+  console.log(displayArr);
+
+  if (displayArr.length === 4) {
+    displayValBottom.textContent = calcValue;
+    displayArr = [calcValue];
+    displayString = "";
+  }
+}
 */

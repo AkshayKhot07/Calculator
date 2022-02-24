@@ -124,3 +124,7 @@
   margin-top: 10px;
   display: none;
 }
+
+.display-values-top.visible {
+  display: block;
+}
