@@ -72,6 +72,7 @@ let displayValBottom = document.getElementById("display-values-bottom");
 let displayValTop = document.getElementById("display-values-top");
 let displayString = "";
 let displayArr = [];
+let displayCalc = "";
 
 function displayScreen(number, calcOperator, equalOp, calcValue) {
   if (number) {
@@ -83,12 +84,18 @@ function displayScreen(number, calcOperator, equalOp, calcValue) {
   else if (equalOp) {
     if (displayString !== "") {
       displayArr.push(displayString);
+      displayArr.push(equalOp);
     }
-    displayString = "";
-    displayArr.push(equalOp);
+
     if (displayArr.length === 4) {
       displayValBottom.textContent = calcValue;
+      displayValTop.textContent =
+        displayArr[0] + displayArr[1] + displayArr[2] + displayArr[3];
+      displayValTop.classList.add("visible");
       displayArr = [calcValue];
+      console.log(displayArr);
+      displayString = "";
+      displayCalc = "";
     }
   }
 
@@ -96,15 +103,33 @@ function displayScreen(number, calcOperator, equalOp, calcValue) {
   else if (calcOperator) {
     if (displayString !== "") {
       displayArr.push(displayString);
+      console.log(displayString);
+
+      //top display screen
+      displayCalc = displayString + calcOperator;
+      displayValTop.textContent = displayString + calcOperator;
+      displayValTop.classList.add("visible");
+      displayString = "";
+      displayArr.push(calcOperator);
+    } else if (displayArr.length === 1) {
+      //top display screen
+      displayCalc = displayArr[0] + calcOperator;
+      displayValTop.textContent = displayCalc;
+      displayValTop.classList.add("visible");
+      displayString = "";
+      displayArr.push(calcOperator);
     }
-    displayString = "";
-    displayArr.push(calcOperator);
+
     if (displayArr.length === 4) {
       // console.log(displayArr);
       displayValBottom.textContent = calcValue;
       displayArr = [];
       displayArr.push(calcValue);
       displayArr.push(calcOperator);
+
+      //top display screen
+      displayValTop.textContent = calcValue + calcOperator;
+      displayValTop.classList.add("visible");
     }
   }
 }
@@ -120,7 +145,7 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-  return a * b;
+  return (a * b).toFixed(2);
 }
 
 function divide(a, b) {
@@ -219,3 +244,30 @@ function displayScreen(number, calcOperator, equalOp, calcValue) {
   }
 }
 */
+
+/*
+  else if (equalOp) {
+    if (displayString !== "") {
+      displayArr.push(displayString);
+      console.log(displayString);
+
+      //top display screen
+      displayValTop.textContent = displayCalc + displayString + equalOp;
+      displayValTop.classList.add("visible");
+      displayString = "";
+      displayCalc = "";
+      displayArr.push(equalOp);
+    }
+
+    if (displayArr.length === 4) {
+      // displayArr.push(equalOp);
+      displayValBottom.textContent = calcValue;
+      displayValTop.textContent =
+        displayArr[0] + displayArr[1] + displayArr[2] + displayArr[3];
+      displayArr = [calcValue];
+      console.log(displayArr);
+      displayString = "";
+      displayCalc = "";
+    }
+  }
+  */
