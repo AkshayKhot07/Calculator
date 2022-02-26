@@ -16,7 +16,12 @@ buttons.forEach((button) => {
     //Initial stage and percentage calc
     let number;
 
-    if (this.classList.contains("number")) {
+    if (this.id === "dot" && str.includes(".")) {
+      return;
+    } else if (this.id === "dot" && str.length === 0) {
+      number = 0 + this.textContent;
+      str += number;
+    } else if (this.classList.contains("number")) {
       number = this.textContent;
       str += number;
     } else if (this.classList.contains("operator") || this.id === "equal") {
@@ -62,7 +67,41 @@ buttons.forEach((button) => {
       // console.log(equalOp);
     }
 
-    displayScreen(number, calcOperator, equalOp, calcValue);
+    //% Operator
+    let percentageOp;
+    if (this.id === "percentage") {
+      percentageOp = this.textContent;
+    }
+
+    //dot Operator
+    let dotOp;
+    if (this.id === "dot") {
+      dotOp = this.textContent;
+    }
+
+    //All Clear
+    if (this.id === "clear-all") {
+      console.log("clearAll");
+      arr = [];
+      str = "";
+      elData = null;
+      calcOperator = null;
+      calcValue = null;
+      displayValBottom.textContent = 0;
+      displayValTop.textContent = "";
+      displayString = "";
+      displayArr = [];
+      displayCalc = "";
+    }
+
+    displayScreen(
+      number,
+      calcOperator,
+      equalOp,
+      calcValue,
+      percentageOp,
+      dotOp
+    );
   });
 });
 
@@ -74,17 +113,48 @@ let displayString = "";
 let displayArr = [];
 let displayCalc = "";
 
-function displayScreen(number, calcOperator, equalOp, calcValue) {
-  if (number) {
+function displayScreen(
+  number,
+  calcOperator,
+  equalOp,
+  calcValue,
+  percentageOp,
+  dotOp
+) {
+  /////Dot operator/////
+  if (dotOp && displayArr.length === 1) {
+    displayString = parseInt(displayArr[0]) + dotOp;
+    displayValBottom.textContent = displayString;
+    displayArr = [];
+  }
+
+  /////Numbers/////
+  else if (number) {
     displayString += number;
     displayValBottom.textContent = displayString;
   }
 
-  //equal operator
+  /////Percentage Op & Calc Value/////
+  else if (percentageOp && displayArr.length === 1) {
+    displayArr = [parseFloat(displayArr[0]) / 100];
+    displayValBottom.textContent = displayArr[0];
+  }
+
+  /////percentage operator/////
+  else if (percentageOp) {
+    // displayString += number / 100;
+    displayString = parseFloat(displayString) / 100;
+    displayValBottom.textContent = displayString;
+  }
+
+  /////equal operator/////
   else if (equalOp) {
     if (displayString !== "") {
       displayArr.push(displayString);
-      displayArr.push(equalOp);
+      displayString = "";
+      if (displayArr.length === 3) {
+        displayArr.push(equalOp);
+      }
     }
 
     if (displayArr.length === 4) {
@@ -99,7 +169,7 @@ function displayScreen(number, calcOperator, equalOp, calcValue) {
     }
   }
 
-  //calculation operator
+  /////calculation operator/////
   else if (calcOperator) {
     if (displayString !== "") {
       displayArr.push(displayString);
@@ -145,11 +215,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-  return (a * b).toFixed(2);
+  return a * b;
 }
 
 function divide(a, b) {
-  return (a / b).toFixed(2);
+  return a / b;
 }
 
 // function percentage(n) {
