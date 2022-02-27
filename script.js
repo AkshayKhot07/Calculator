@@ -1,13 +1,20 @@
 "use strict";
 
-/************* Variable declaration and selector*************/
 const buttons = Array.from(document.querySelectorAll("button"));
 
+//Calculations variable declaration
 let arr = [];
 let str = "";
 let elData;
 let calcOperator;
 let calcValue;
+
+// Display screen varibale declaration
+let displayValBottom = document.getElementById("display-values-bottom");
+let displayValTop = document.getElementById("display-values-top");
+let displayString = "";
+let displayArr = [];
+let displayCalc = "";
 
 buttons.forEach((button) => {
   button.addEventListener("click", function (e) {
@@ -94,6 +101,18 @@ buttons.forEach((button) => {
       displayCalc = "";
     }
 
+    //Backspace
+    if (this.id === "backspace") {
+      if (str.length > 0 && displayString.length > 0) {
+        str = str.slice(0, str.length - 1);
+        displayValBottom.textContent = str;
+        displayString = displayString.slice(0, displayString.length - 1);
+        displayValBottom.textContent = displayString;
+      } else {
+        return;
+      }
+    }
+
     displayScreen(
       number,
       calcOperator,
@@ -105,13 +124,7 @@ buttons.forEach((button) => {
   });
 });
 
-/************* Function Display Screen *************/
-
-let displayValBottom = document.getElementById("display-values-bottom");
-let displayValTop = document.getElementById("display-values-top");
-let displayString = "";
-let displayArr = [];
-let displayCalc = "";
+//*********Function Display Screen*********//
 
 function displayScreen(
   number,
@@ -204,7 +217,7 @@ function displayScreen(
   }
 }
 
-/************* Functions *************/
+/************* Arithmetic Operations Functions *************/
 
 function add(a, b) {
   return a + b;
@@ -244,100 +257,7 @@ function calculate(op, arr) {
   //   value = percentage(a);
   // }
 
-  return value;
+  return Math.round((value + Number.EPSILON) * 100) / 100;
 }
 
 // console.log(calculate("+", 5, 3));
-
-/************* Trail and Error Code *************/
-/*
-buttons.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  let button = e.target;
-  const arr = [];
-  let number;
-  let operator;
-
-  if (e.target.classList.contains("number")) {
-    number = parseInt(e.target.textContent);
-    arr.push(number);
-  }
-  // console.log(number);
-  console.log(arr);
-
-  if (e.target.classList.contains("operator")) {
-    operator = e.target.textContent;
-    // console.log(operator);
-  }
-
-  if (e.target.id === "equal") {
-    console.log(calculate(operator, ...number));
-  }
-});
-*/
-
-/*
-function displayScreen(number, calcOperator, equalOp, calcValue) {
-  if (number) {
-    displayString += number;
-    displayValBottom.textContent = displayString;
-  } else if (equalOp) {
-    if (displayString !== "") {
-      displayArr.push(displayString);
-    }
-    // displayString += equalOp;
-    displayArr.push(equalOp);
-    // displayValTop.textContent = displayString;
-    // displayValTop.classList.add("visible");
-    // displayString = "";
-  } else if (calcOperator) {
-    if (displayString !== "") {
-      displayArr.push(displayString);
-    }
-    // displayString += calcOperator;
-    displayArr.push(calcOperator);
-    // displayValTop.textContent = displayString;
-    // displayValTop.classList.add("visible");
-    displayString = "";
-  } else if (number && displayArr.length === 4) {
-    displayValBottom.textContent = calcValue;
-  }
-
-  console.log(displayString);
-  console.log(displayArr);
-
-  if (displayArr.length === 4) {
-    displayValBottom.textContent = calcValue;
-    displayArr = [calcValue];
-    displayString = "";
-  }
-}
-*/
-
-/*
-  else if (equalOp) {
-    if (displayString !== "") {
-      displayArr.push(displayString);
-      console.log(displayString);
-
-      //top display screen
-      displayValTop.textContent = displayCalc + displayString + equalOp;
-      displayValTop.classList.add("visible");
-      displayString = "";
-      displayCalc = "";
-      displayArr.push(equalOp);
-    }
-
-    if (displayArr.length === 4) {
-      // displayArr.push(equalOp);
-      displayValBottom.textContent = calcValue;
-      displayValTop.textContent =
-        displayArr[0] + displayArr[1] + displayArr[2] + displayArr[3];
-      displayArr = [calcValue];
-      console.log(displayArr);
-      displayString = "";
-      displayCalc = "";
-    }
-  }
-  */
