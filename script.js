@@ -220,6 +220,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b === 0) {
+    alert(`Can't Divide by Zero!`);
+    return 0;
+  }
   return a / b;
 }
 
