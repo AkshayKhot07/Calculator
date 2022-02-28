@@ -30,12 +30,12 @@
   margin-left: 5px;
 }
 
-/* #clear-all {
+#clear-all {
   grid-column: 1/3;
   border-radius: 12px;
   width: 150px;
   margin-left: 5px;
-} */
+}
 
 /* All Buttons */
 .buttons {

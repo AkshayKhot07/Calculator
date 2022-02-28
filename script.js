@@ -101,18 +101,6 @@ buttons.forEach((button) => {
       displayCalc = "";
     }
 
-    //Backspace
-    if (this.id === "backspace") {
-      if (str.length > 0 && displayString.length > 0) {
-        str = str.slice(0, str.length - 1);
-        displayValBottom.textContent = str;
-        displayString = displayString.slice(0, displayString.length - 1);
-        displayValBottom.textContent = displayString;
-      } else {
-        return;
-      }
-    }
-
     displayScreen(
       number,
       calcOperator,
@@ -204,7 +192,7 @@ function displayScreen(
     }
 
     if (displayArr.length === 4) {
-      // console.log(displayArr);
+      console.log(displayArr);
       displayValBottom.textContent = calcValue;
       displayArr = [];
       displayArr.push(calcValue);
@@ -261,3 +249,19 @@ function calculate(op, arr) {
 }
 
 // console.log(calculate("+", 5, 3));
+
+//Trial and error Code
+/*
+//Backspace
+if (this.id === "backspace") {
+  if (str.length > 0 && displayString.length > 0) {
+    str = str.slice(0, str.length - 1);
+    displayValBottom.textContent = str;
+    displayString = displayString.slice(0, displayString.length - 1);
+    displayValBottom.textContent = displayString;
+  } else {
+    alert("Only works with non-calculated/before operator selected values");
+    return;
+  }
+}
+*/
